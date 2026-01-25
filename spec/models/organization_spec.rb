@@ -46,5 +46,9 @@ RSpec.describe Organization, type: :model do
   it 'has a phone attribute' do
     expect(organization).to respond_to(:phone)
   end
+
+  it 'has a email attribute' do
+    expect(organization).to respond_to(:email)
+  end
  
 end
