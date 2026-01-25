@@ -25,4 +25,6 @@ RSpec.describe Ticket, type: :model do
 
   it { should belong_to(:region) }
 
+  it { should belong_to(:resource_category) }
+
 end
