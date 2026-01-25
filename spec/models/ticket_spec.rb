@@ -7,5 +7,9 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:name)
   end
 
+   it 'has a description attribute' do
+    expect(ticket).to respond_to(:description)
+  end
+
 
 end
