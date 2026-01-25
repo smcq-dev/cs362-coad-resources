@@ -66,5 +66,9 @@ RSpec.describe Organization, type: :model do
   it 'has a primary_name attribute' do
     expect(organization).to respond_to(:primary_name)
   end
+
+  it 'has a secondary_name attribute' do
+    expect(organization).to respond_to(:secondary_name)
+  end
  
 end
