@@ -82,5 +82,7 @@ RSpec.describe Organization, type: :model do
   it 'has a transportation attribute' do
     expect(organization).to respond_to(:transportation)
   end
+
+  it { should have_many(:users) }
  
 end

@@ -7,7 +7,7 @@ RSpec.describe ResourceCategory, type: :model do
     expect(resource).to respond_to(:name)
   end
 
-   it 'has a active attribute' do
+  it 'has a active attribute' do
     expect(resource).to respond_to(:active)
   end
 
