@@ -42,5 +42,9 @@ RSpec.describe Organization, type: :model do
   it 'has a status attribute' do
     expect(organization).to respond_to(:status)
   end
+
+  it 'has a phone attribute' do
+    expect(organization).to respond_to(:phone)
+  end
  
 end
