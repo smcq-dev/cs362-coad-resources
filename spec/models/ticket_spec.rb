@@ -15,4 +15,8 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:phone)
   end
 
+  it 'has a closed attribute' do
+    expect(ticket).to respond_to(:closed)
+  end
+
 end
