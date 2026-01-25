@@ -1,3 +1,5 @@
+#This class represents the actual physical type of good an organization can donate. 
+
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations

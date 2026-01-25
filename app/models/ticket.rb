@@ -1,3 +1,5 @@
+#This class represents help requests that people or groups ask COAD for help with. 
+
 class Ticket < ApplicationRecord
 
   belongs_to :region

@@ -1,3 +1,5 @@
+#This class represents an entity that uses the application, and can be defined in two ways, an admin or an organization. 
+
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]

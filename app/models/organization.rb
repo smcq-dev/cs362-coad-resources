@@ -1,3 +1,5 @@
+#This class represents organizations that want to donate through COAD for disaster relief. 
+
 class Organization < ApplicationRecord
 
   attr_accessor :agreement_one, :agreement_two, :agreement_three, :agreement_four, :agreement_five, :agreement_six, :agreement_seven, :agreement_eight

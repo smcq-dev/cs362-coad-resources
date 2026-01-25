@@ -1,3 +1,5 @@
+#This class represents a physical region (in Deschutes county) that COAD accepts donations to.
+
 class Region < ApplicationRecord
 
   has_many :tickets
