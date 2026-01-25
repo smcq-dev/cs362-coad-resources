@@ -21,4 +21,17 @@ RSpec.describe Region, type: :model do
 
   it { should validate_uniqueness_of(:name).case_insensitive }
 
+  describe 'methods' do
+
+    describe 'unspecified' do
+
+      it 'creates a unspecified region' do
+        region = Region.unspecified
+        expect(region.name).to eq('Unspecified')
+      end
+
+    end
+
+  end
+
 end
