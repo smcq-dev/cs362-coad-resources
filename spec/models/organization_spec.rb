@@ -54,5 +54,9 @@ RSpec.describe Organization, type: :model do
   it 'has a description attribute' do
     expect(organization).to respond_to(:description)
   end
+
+  it 'has a rejection_reason attribute' do
+    expect(organization).to respond_to(:rejection_reason)
+  end
  
 end
