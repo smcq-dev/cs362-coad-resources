@@ -30,5 +30,9 @@ RSpec.describe Organization, type: :model do
   it 'has a agreement_seven attribute' do
     expect(organization).to respond_to(:agreement_seven)
   end
+
+  it 'has a agreement_eight attribute' do
+    expect(organization).to respond_to(:agreement_eight)
+  end
  
 end
