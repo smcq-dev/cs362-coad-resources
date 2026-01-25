@@ -27,6 +27,8 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:agreement_six)
   end
 
-  
+  it 'has a agreement_seven attribute' do
+    expect(organization).to respond_to(:agreement_seven)
+  end
  
 end
