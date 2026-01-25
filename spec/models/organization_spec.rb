@@ -116,5 +116,18 @@ RSpec.describe Organization, type: :model do
   it { should validate_uniqueness_of(:name).case_insensitive }
 
   it { should validate_length_of(:description).is_at_most(1020) }
+
+  describe 'methods' do
+
+    describe 'approve' do
+
+      it 'sets status to approved ' do
+        organization.approve
+        expect(organization.status).to eq("approved")
+      end
+
+    end
+  
+  end
  
 end
