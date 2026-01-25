@@ -11,4 +11,6 @@ RSpec.describe ResourceCategory, type: :model do
     expect(resource).to respond_to(:active)
   end
 
+  it { should have_many(:tickets) }
+
 end
