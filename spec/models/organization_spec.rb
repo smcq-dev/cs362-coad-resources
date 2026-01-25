@@ -38,5 +38,9 @@ RSpec.describe Organization, type: :model do
   it 'has a name attribute' do
     expect(organization).to respond_to(:name)
   end
+
+  it 'has a status attribute' do
+    expect(organization).to respond_to(:status)
+  end
  
 end
