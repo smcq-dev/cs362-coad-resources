@@ -136,6 +136,15 @@ RSpec.describe Organization, type: :model do
       end
 
     end
+
+    describe 'set_default_status' do
+
+      it 'sets status to submitted' do
+        organization.set_default_status
+        expect(organization.status).to eq("submitted")
+      end
+
+    end
   
   end
  
