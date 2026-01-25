@@ -23,4 +23,6 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:closed_at)
   end
 
+  it { should belong_to(:region) }
+
 end
