@@ -15,4 +15,6 @@ let (:user) { User.new }
 
   it { should validate_presence_of(:email) }
 
+  it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
+
 end
