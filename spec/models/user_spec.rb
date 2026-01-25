@@ -25,4 +25,6 @@ let (:user) { User.new }
 
   it { should validate_presence_of(:password) }
 
+  it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
+
 end
