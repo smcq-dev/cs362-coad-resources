@@ -35,4 +35,6 @@ RSpec.describe Ticket, type: :model do
 
   it { should validate_presence_of(:region_id) }
 
+  it { should validate_presence_of(:resource_category_id) }
+
 end
