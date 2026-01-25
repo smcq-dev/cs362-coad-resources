@@ -108,5 +108,7 @@ RSpec.describe Organization, type: :model do
   it { should allow_value('test@email.com').for(:email) }
 
   it { should_not allow_value('test-email').for(:email) }
+
+  it { should validate_uniqueness_of(:email).case_insensitive }
  
 end
