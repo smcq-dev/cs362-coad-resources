@@ -33,4 +33,6 @@ RSpec.describe Ticket, type: :model do
 
   it { should validate_presence_of(:phone) }
 
+  it { should validate_presence_of(:region_id) }
+
 end
