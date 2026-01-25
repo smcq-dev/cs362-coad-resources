@@ -21,5 +21,6 @@ let (:user) { User.new }
 
   it { should_not allow_value('test-email').for(:email) }
 
+  it { should validate_uniqueness_of(:email).case_insensitive }
 
 end
