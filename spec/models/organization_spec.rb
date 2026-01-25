@@ -145,6 +145,15 @@ RSpec.describe Organization, type: :model do
       end
 
     end
+
+    describe 'to_s' do
+
+      it 'prints to_s' do
+        organization = Organization.new(name: 'test name')
+        expect(organization.to_s).to eq('test name')
+      end
+
+    end
   
   end
  
