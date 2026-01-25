@@ -74,5 +74,9 @@ RSpec.describe Organization, type: :model do
   it 'has a secondary_phone attribute' do
     expect(organization).to respond_to(:secondary_phone)
   end
+
+  it 'has a title attribute' do
+    expect(organization).to respond_to(:title)
+  end
  
 end
