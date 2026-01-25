@@ -41,4 +41,10 @@ RSpec.describe Ticket, type: :model do
 
   it { should validate_length_of(:description).is_at_most(1020) }
 
+  it { should allow_value('+1 500-500-5000').for(:phone) }
+
+  it { should_not allow_value('inv').for(:phone) }
+
+  it { should_not allow_value('541').for(:phone) }
+
 end
