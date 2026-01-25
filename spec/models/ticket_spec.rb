@@ -19,4 +19,8 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:closed)
   end
 
+  it 'has a closed_at attribute' do
+    expect(ticket).to respond_to(:closed_at)
+  end
+
 end
