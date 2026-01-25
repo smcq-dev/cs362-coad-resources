@@ -78,5 +78,9 @@ RSpec.describe Organization, type: :model do
   it 'has a title attribute' do
     expect(organization).to respond_to(:title)
   end
+
+  it 'has a transportation attribute' do
+    expect(organization).to respond_to(:transportation)
+  end
  
 end
