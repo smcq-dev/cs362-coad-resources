@@ -50,5 +50,9 @@ RSpec.describe Organization, type: :model do
   it 'has a email attribute' do
     expect(organization).to respond_to(:email)
   end
+
+  it 'has a description attribute' do
+    expect(organization).to respond_to(:description)
+  end
  
 end
