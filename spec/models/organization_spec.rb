@@ -62,5 +62,9 @@ RSpec.describe Organization, type: :model do
   it 'has a liability_insurance attribute' do
     expect(organization).to respond_to(:liability_insurance)
   end
+
+  it 'has a primary_name attribute' do
+    expect(organization).to respond_to(:primary_name)
+  end
  
 end
