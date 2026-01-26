@@ -57,6 +57,16 @@ RSpec.describe Ticket, type: :model do
 
     end
 
+    describe 'captured?' do
+
+      it 'check if an organization has claimed it' do 
+        organization = Organization.new
+        ticket = Ticket.new(organization: organization)
+        expect(ticket.captured?).to eq(true)
+      end
+    
+    end
+
   end
 
 end
