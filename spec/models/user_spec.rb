@@ -38,6 +38,15 @@ let (:user) { User.new }
 
     end
 
+    describe 'to_s' do
+
+      it 'prints the email' do
+        user = User.new(email: 'test@gmail.com')
+        expect(user.to_s).to eq('test@gmail.com')
+      end
+
+    end
+
   end
 
 end
