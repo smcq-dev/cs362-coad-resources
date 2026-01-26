@@ -116,6 +116,27 @@ RSpec.describe Ticket, type: :model do
 
     end
 
+    describe '.all_organizations' do
+
+      it 'returns unclosed tickets with an organization' do
+        open_ticket = Ticket.new(closed: false, organization_id: 1)
+        open_ticket.save(validate: false)
+
+        closed_ticket = Ticket.new(closed: true, organization_id: 1)
+        closed_ticket.save(validate: false)
+
+        no_org_ticket = Ticket.new(closed: false, organization_id: nil)
+
+        result = Ticket.all_organization
+
+        expect(result).to include(open_ticket)
+        expect(result).not_to include(closed_ticket)
+        expect(result).not_to include(no_org_ticket)
+
+      end
+
+    end
+
   end
 
 end
