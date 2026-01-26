@@ -98,6 +98,24 @@ RSpec.describe Ticket, type: :model do
   
     end
 
+    describe '.closed' do
+      
+      it 'returns only closed tickets' do
+        open_ticket = Ticket.new(closed: false, organization_id: nil)
+        open_ticket.save(validate: false)
+
+        closed_ticket = Ticket.new(closed: true)
+        closed_ticket.save(validate: false)
+
+        result = Ticket.closed
+
+        expect(result).to include(closed_ticket)
+        expect(result).not_to include(open_ticket)
+
+      end
+
+    end
+
   end
 
 end
