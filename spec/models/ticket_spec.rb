@@ -182,6 +182,28 @@ RSpec.describe Ticket, type: :model do
 
     end
 
+    describe '.region' do
+
+      it 'returns regions with specific region_id' do
+        open_ticket = Ticket.new(closed: false, region_id: 1)
+        open_ticket.save(validate: false)
+
+        closed_ticket = Ticket.new(closed: true, region_id: 1)
+        closed_ticket.save(validate: false)
+
+        reg2_ticket = Ticket.new(closed:false, region_id: 2)
+        reg2_ticket.save(validate: false)
+
+        result = Ticket.region(1)
+
+        expect(result).to include(open_ticket)
+        expect(result).to include(closed_ticket)
+        expect(result).not_to include(reg2_ticket)
+        
+      end
+
+    end
+
   end
 
 end
