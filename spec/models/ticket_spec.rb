@@ -52,7 +52,7 @@ RSpec.describe Ticket, type: :model do
     describe 'open?' do
 
       it 'checks for openness' do
-        expect(ticket.closed).to eq(false)
+        expect(ticket.open?).to eq(true)
       end
 
     end

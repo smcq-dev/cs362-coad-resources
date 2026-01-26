@@ -63,9 +63,32 @@ RSpec.describe ResourceCategory, type: :model do
 
       it 'prints resource name' do
         resource = ResourceCategory.new(name: 'test resource')
-        expect(resource.name).to eq('test resource')
+        expect(resource.to_s).to eq('test resource')
       end
     
+    end
+
+  end
+
+  describe 'scope' do
+
+    describe '.active' do
+      
+      it 'returns only active resources' do
+
+        active_resource = ResourceCategory.new(active: true)
+        active_resource.save(validate: false)
+
+        inactive_resource = ResourceCategory.new(active: false)
+        inactive_resource.save(validate: false)
+
+        result = ResourceCategory.active
+
+        expect(result).to include(active_resource)
+        expect(result).not_to include(inactive_resource)
+
+      end
+
     end
 
   end
