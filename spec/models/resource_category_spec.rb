@@ -91,6 +91,25 @@ RSpec.describe ResourceCategory, type: :model do
 
     end
 
+    describe '.inactive' do
+
+      it 'returns only inactive resources' do
+
+        active_resource = ResourceCategory.new(active: true)
+        active_resource.save(validate: false)
+
+        inactive_resource = ResourceCategory.new(active: false)
+        inactive_resource.save(validate: false)
+
+        result = ResourceCategory.inactive
+
+        expect(result).to include(inactive_resource)
+        expect(result).not_to include(active_resource)
+
+      end
+
+    end
+
   end
 
 end
