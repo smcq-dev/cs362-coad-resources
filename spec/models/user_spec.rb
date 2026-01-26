@@ -27,4 +27,17 @@ let (:user) { User.new }
 
   it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
 
+  describe 'methods' do
+
+    describe 'set_default_role' do
+
+      it 'sets user to default role' do
+        user = User.new
+        expect(user.role).to eq('organization')
+      end
+
+    end
+
+  end
+
 end
