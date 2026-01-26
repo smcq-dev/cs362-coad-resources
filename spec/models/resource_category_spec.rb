@@ -41,7 +41,7 @@ RSpec.describe ResourceCategory, type: :model do
     
     end
 
-     describe 'deactivate' do
+    describe 'deactivate' do
 
       it 'sets active to false' do 
         resource.deactivate
@@ -50,7 +50,7 @@ RSpec.describe ResourceCategory, type: :model do
     
     end
 
-     describe 'inactive?' do
+    describe 'inactive?' do
 
       it 'tests for activeness' do 
         resource.deactivate
@@ -59,8 +59,15 @@ RSpec.describe ResourceCategory, type: :model do
     
     end
 
-  end
+    describe 'to_s' do
 
-  
+      it 'prints resource name' do
+        resource = ResourceCategory.new(name: 'test resource')
+        expect(resource.name).to eq('test resource')
+      end
+    
+    end
+
+  end
 
 end
