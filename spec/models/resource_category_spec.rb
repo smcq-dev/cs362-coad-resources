@@ -50,6 +50,15 @@ RSpec.describe ResourceCategory, type: :model do
     
     end
 
+     describe 'inactive?' do
+
+      it 'tests for activeness' do 
+        resource.deactivate
+        expect(resource.inactive?).to eq(true)
+      end
+    
+    end
+
   end
 
   
