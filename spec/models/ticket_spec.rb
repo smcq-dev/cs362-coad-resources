@@ -67,6 +67,15 @@ RSpec.describe Ticket, type: :model do
     
     end
 
+    describe 'to_s' do
+
+      it 'assigns and id and checks it' do 
+        ticket = Ticket.new(id: 123)
+        expect(ticket.to_s).to eq("Ticket 123")
+      end
+    
+    end
+
   end
 
 end
