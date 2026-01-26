@@ -47,4 +47,16 @@ RSpec.describe Ticket, type: :model do
 
   it { should_not allow_value('541').for(:phone) }
 
+  describe 'methods' do
+
+    describe 'open?' do
+
+      it 'checks for openness' do
+        expect(ticket.closed).to eq(false)
+      end
+
+    end
+
+  end
+
 end
