@@ -184,7 +184,7 @@ RSpec.describe Ticket, type: :model do
 
     describe '.region' do
 
-      it 'returns regions with specific region_id' do
+      it 'returns tickets with specific region_id' do
         open_ticket = Ticket.new(closed: false, region_id: 1)
         open_ticket.save(validate: false)
 
@@ -199,6 +199,28 @@ RSpec.describe Ticket, type: :model do
         expect(result).to include(open_ticket)
         expect(result).to include(closed_ticket)
         expect(result).not_to include(reg2_ticket)
+        
+      end
+
+    end
+
+    describe '.resource_category' do
+
+      it 'returns tickets with a specific resource_id' do
+        open_ticket = Ticket.new(closed: false, resource_category_id: 1)
+        open_ticket.save(validate: false)
+
+        closed_ticket = Ticket.new(closed: true, resource_category_id: 1)
+        closed_ticket.save(validate: false)
+
+        res2_ticket = Ticket.new(closed:false, resource_category_id: 2)
+        res2_ticket.save(validate: false)
+
+        result = Ticket.resource_category(1)
+
+        expect(result).to include(open_ticket)
+        expect(result).to include(closed_ticket)
+        expect(result).not_to include(res2_ticket)
         
       end
 
