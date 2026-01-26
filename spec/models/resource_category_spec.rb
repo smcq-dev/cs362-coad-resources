@@ -32,6 +32,15 @@ RSpec.describe ResourceCategory, type: :model do
 
     end
 
+    describe 'activate' do
+
+      it 'sets active to true' do 
+        resource.activate
+        expect(resource.active).to eq(true)
+      end
+    
+    end
+
   end
 
 end
