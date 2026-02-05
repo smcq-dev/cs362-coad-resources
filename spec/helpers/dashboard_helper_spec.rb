@@ -19,6 +19,12 @@ RSpec.describe DashboardHelper, type: :helper do
       expect(dashboard_for(user)).to eq("admin_dashboard")
     end
 
+    it "returns submitted dashboard for a newly created organization" do
+      org = Organization.new(status: :submitted)
+      user = User.new(role: :organization, organization: org)
+      expect(dashboard_for(user)).to eq("organization_submitted_dashboard")
+    end
+
   end
 
 end
