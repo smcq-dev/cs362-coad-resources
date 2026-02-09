@@ -75,13 +75,8 @@ RSpec.describe ResourceCategory, type: :model do
     describe '.active' do
       
       it 'returns only active resources' do
-
-        active_resource = ResourceCategory.new(active: true)
-        active_resource.save(validate: false)
-
-        inactive_resource = ResourceCategory.new(active: false)
-        inactive_resource.save(validate: false)
-
+        active_resource = create(:resource_category)
+        inactive_resource = create(:resource_category, active: false)
         result = ResourceCategory.active
 
         expect(result).to include(active_resource)
@@ -94,13 +89,8 @@ RSpec.describe ResourceCategory, type: :model do
     describe '.inactive' do
 
       it 'returns only inactive resources' do
-
-        active_resource = ResourceCategory.new(active: true)
-        active_resource.save(validate: false)
-
-        inactive_resource = ResourceCategory.new(active: false)
-        inactive_resource.save(validate: false)
-
+        active_resource = create(:resource_category)
+        inactive_resource = create(:resource_category, active: false)
         result = ResourceCategory.inactive
 
         expect(result).to include(inactive_resource)
