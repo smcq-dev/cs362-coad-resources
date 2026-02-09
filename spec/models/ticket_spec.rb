@@ -60,8 +60,7 @@ RSpec.describe Ticket, type: :model do
     describe 'captured?' do
 
       it 'check if an organization has claimed it' do 
-        organization = Organization.new
-        ticket = Ticket.new(organization: organization)
+        ticket = build(:ticket, :captured)
         expect(ticket.captured?).to eq(true)
       end
     
@@ -83,12 +82,8 @@ RSpec.describe Ticket, type: :model do
     describe '.open' do
 
       it 'returns only open tickets' do
-        open_ticket = Ticket.new(closed: false, organization_id: nil)
-        open_ticket.save(validate: false)
-
-        closed_ticket = Ticket.new(closed: true)
-        closed_ticket.save(validate: false)
-
+        open_ticket = create(:ticket)
+        closed_ticket = create(:ticket, :closed)
         result = Ticket.open
 
         expect(result).to include(open_ticket)
@@ -101,12 +96,8 @@ RSpec.describe Ticket, type: :model do
     describe '.closed' do
       
       it 'returns only closed tickets' do
-        open_ticket = Ticket.new(closed: false, organization_id: nil)
-        open_ticket.save(validate: false)
-
-        closed_ticket = Ticket.new(closed: true)
-        closed_ticket.save(validate: false)
-
+        open_ticket = create(:ticket)
+        closed_ticket = create(:ticket, :closed)
         result = Ticket.closed
 
         expect(result).to include(closed_ticket)
@@ -119,15 +110,9 @@ RSpec.describe Ticket, type: :model do
     describe '.all_organizations' do
 
       it 'returns unclosed tickets with an organization' do
-        open_ticket = Ticket.new(closed: false, organization_id: 1)
-        open_ticket.save(validate: false)
-
-        closed_ticket = Ticket.new(closed: true, organization_id: 1)
-        closed_ticket.save(validate: false)
-
-        no_org_ticket = Ticket.new(closed: false, organization_id: nil)
-        no_org_ticket.save(validate: false)
-
+        open_ticket = create(:ticket, :captured)
+        closed_ticket = create(:ticket, :closed, :captured)
+        no_org_ticket = create(:ticket)
         result = Ticket.all_organization
 
         expect(result).to include(open_ticket)
@@ -141,15 +126,9 @@ RSpec.describe Ticket, type: :model do
     describe '.organization' do
 
       it 'returns unclosed tickets for an organization' do
-        open_ticket = Ticket.new(closed: false, organization_id: 1)
-        open_ticket.save(validate: false)
-
-        closed_ticket = Ticket.new(closed: true, organization_id: 1)
-        closed_ticket.save(validate: false)
-
-        org2_ticket = Ticket.new(closed: false, organization_id: 2)
-        org2_ticket.save(validate: false)
-
+        open_ticket = create(:ticket, :captured, organization_id: 1)
+        closed_ticket = create(:ticket, :closed, :captured, organization_id: 1)
+        org2_ticket = create(:ticket, :captured, organization_id: 2)
         result = Ticket.organization(1)
 
         expect(result).to include(open_ticket)
@@ -163,15 +142,9 @@ RSpec.describe Ticket, type: :model do
     describe '.closed_organization' do
 
       it 'returns closed tickets for an organization' do
-        open_ticket = Ticket.new(closed: false, organization_id: 1)
-        open_ticket.save(validate: false)
-
-        closed_ticket = Ticket.new(closed: true, organization_id: 1)
-        closed_ticket.save(validate: false)
-
-        org2_ticket = Ticket.new(closed: false, organization_id: 2)
-        org2_ticket.save(validate: false)
-
+        open_ticket = create(:ticket, :captured, organization_id: 1)
+        closed_ticket = create(:ticket, :closed, :captured, organization_id: 1)
+        org2_ticket = create(:ticket, :captured, organization_id: 2)
         result = Ticket.closed_organization(1)
 
         expect(result).to include(closed_ticket)
@@ -185,16 +158,14 @@ RSpec.describe Ticket, type: :model do
     describe '.region' do
 
       it 'returns tickets with specific region_id' do
-        open_ticket = Ticket.new(closed: false, region_id: 1)
-        open_ticket.save(validate: false)
+        region1 = create(:region)
+        region2 = create(:region)
 
-        closed_ticket = Ticket.new(closed: true, region_id: 1)
-        closed_ticket.save(validate: false)
-
-        reg2_ticket = Ticket.new(closed:false, region_id: 2)
-        reg2_ticket.save(validate: false)
-
-        result = Ticket.region(1)
+        open_ticket = create(:ticket, :captured, region: region1)
+        closed_ticket = create(:ticket, :closed, :captured, region: region1)
+        reg2_ticket = create(:ticket, :captured, region: region2)
+        result = Ticket.region(region1.id)
+  
 
         expect(result).to include(open_ticket)
         expect(result).to include(closed_ticket)
@@ -207,16 +178,13 @@ RSpec.describe Ticket, type: :model do
     describe '.resource_category' do
 
       it 'returns tickets with a specific resource_id' do
-        open_ticket = Ticket.new(closed: false, resource_category_id: 1)
-        open_ticket.save(validate: false)
+        res1 = create(:resource_category)
+        res2 = create(:resource_category)
 
-        closed_ticket = Ticket.new(closed: true, resource_category_id: 1)
-        closed_ticket.save(validate: false)
-
-        res2_ticket = Ticket.new(closed:false, resource_category_id: 2)
-        res2_ticket.save(validate: false)
-
-        result = Ticket.resource_category(1)
+        open_ticket = create(:ticket, :captured, resource_category: res1)
+        closed_ticket = create(:ticket, :captured, :closed, resource_category: res1)
+        res2_ticket = create(:ticket, :closed, :captured, resource_category: res2)
+        result = Ticket.resource_category(res1.id)
 
         expect(result).to include(open_ticket)
         expect(result).to include(closed_ticket)
