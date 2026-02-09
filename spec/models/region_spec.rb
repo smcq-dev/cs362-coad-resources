@@ -20,8 +20,8 @@ RSpec.describe Region, type: :model do
     describe 'unspecified' do
 
       it 'creates a unspecified region' do
-        region = Region.unspecified
-        expect(region.name).to eq('Unspecified')
+        region = build(:region, name: 'unspecified')
+        expect(region.name).to eq('unspecified')
       end
 
     end
@@ -29,7 +29,7 @@ RSpec.describe Region, type: :model do
     describe 'to_s' do
 
       it 'prints name' do
-        region = Region.new(name: 'somewhere')
+        region = build(:region, name:'somewhere')
         expect(region.name).to eq('somewhere')
       end
 

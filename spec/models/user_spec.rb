@@ -32,7 +32,7 @@ let (:user) { User.new }
     describe 'set_default_role' do
 
       it 'sets user to default role' do
-        user = User.new
+        user = build(:user)
         expect(user.role).to eq('organization')
       end
 
@@ -41,7 +41,7 @@ let (:user) { User.new }
     describe 'to_s' do
 
       it 'prints the email' do
-        user = User.new(email: 'test@gmail.com')
+        user = build(:user, email: "test@gmail.com")
         expect(user.to_s).to eq('test@gmail.com')
       end
 

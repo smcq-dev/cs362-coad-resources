@@ -13,7 +13,7 @@ require 'rails_helper'
 RSpec.describe TicketsHelper, type: :helper do
   describe "format_phone_number" do
     it "returns a phone number without formating" do
-      expect(helper.format_phone_number("(971) 312-1382")).to eq("15035551212")
+      expect(helper.format_phone_number("(971) 312-1382")).to eq("+19713121382")
     end
   end
 end
