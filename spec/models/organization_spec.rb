@@ -149,7 +149,7 @@ RSpec.describe Organization, type: :model do
     describe 'to_s' do
 
       it 'prints to_s' do
-        organization = Organization.new(name: 'test name')
+        organization = build(:organization, name: 'test name')
         expect(organization.to_s).to eq('test name')
       end
 
