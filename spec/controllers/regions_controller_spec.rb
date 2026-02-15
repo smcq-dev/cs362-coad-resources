@@ -15,6 +15,10 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:new)).to redirect_to new_user_session_path
     }
+
+    it {
+      expect(get(:edit, params: {id: 1})).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged in user' do 
@@ -31,6 +35,10 @@ RSpec.describe RegionsController, type: :controller do
 
      it {
       expect(get(:new)).to redirect_to dashboard_path
+    }
+
+    it {
+      expect(get(:edit, params: {id: 1})).to redirect_to dashboard_path
     }
   end
 
@@ -49,6 +57,10 @@ RSpec.describe RegionsController, type: :controller do
 
     it {
       expect(get(:new)).to be_successful
+    }
+
+    it {
+      expect(get(:edit, params: { id: region.id})).to be_successful
     }
   end
 
