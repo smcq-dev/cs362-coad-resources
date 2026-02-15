@@ -7,6 +7,10 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:index)).to redirect_to new_user_session_path
     }
+
+    it {
+      expect(get(:show, params: {id: 1})).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged in user' do 
@@ -16,14 +20,23 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:index)).to redirect_to dashboard_path
     }
+
+    it {
+      expect(get(:show, params: {id: 1})).to redirect_to dashboard_path
+    }
   end
 
   describe 'as an admin user' do
     let(:user) { create(:user, :admin)}
+    let(:region) { create(:region)}
     before(:each) {sign_in user}
-    
+
     it {
       expect(get(:index)).to be_successful
+    }
+
+    it {
+      expect(get(:show, params: { id: region.id})).to be_successful
     }
   end
 
