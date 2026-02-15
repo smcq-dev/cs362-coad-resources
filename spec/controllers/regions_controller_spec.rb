@@ -19,6 +19,10 @@ RSpec.describe RegionsController, type: :controller do
     it {
       expect(get(:edit, params: {id: 1})).to redirect_to new_user_session_path
     }
+
+    it {
+      expect(patch(:update, params: {id: 1})).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged in user' do 
@@ -39,6 +43,10 @@ RSpec.describe RegionsController, type: :controller do
 
     it {
       expect(get(:edit, params: {id: 1})).to redirect_to dashboard_path
+    }
+
+    it { 
+      expect(patch(:update, params: {id: 1})).to redirect_to dashboard_path
     }
   end
 
@@ -61,6 +69,10 @@ RSpec.describe RegionsController, type: :controller do
 
     it {
       expect(get(:edit, params: { id: region.id})).to be_successful
+    }
+
+    it {
+      expect(patch(:update, params: {id: region.id,  region: FactoryBot.attributes_for(:region)})).to redirect_to region_path(region)
     }
   end
 
