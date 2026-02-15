@@ -28,6 +28,11 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     it {
       expect(delete(:destroy, params: {id: 1})).to redirect_to new_user_session_path
     }
+
+    it {
+      post(:create, params: {id: 1, resource_category: FactoryBot.attributes_for(:resource_category)})
+      expect(response).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged in user' do
@@ -56,6 +61,11 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     it {
       expect(delete(:destroy, params: {id: 1})).to redirect_to dashboard_path
+    }
+
+    it {
+      post(:create, params: {id: 1, resource_category: FactoryBot.attributes_for(:resource_category)})
+      expect(response).to redirect_to dashboard_path
     }
   end
 
@@ -86,6 +96,11 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     it {
       expect(delete(:destroy, params: {id: resource_category.id})).to redirect_to resource_categories_path
+    }
+
+    it {
+      post(:create, params: {id: resource_category.id, resource_category: FactoryBot.attributes_for(:resource_category)})
+      expect(response).to redirect_to resource_categories_path
     }
   end
 end
