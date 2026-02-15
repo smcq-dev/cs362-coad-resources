@@ -8,6 +8,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     it {
       expect(get(:index)).to redirect_to new_user_session_path
     }
+
+    it {
+      expect(get(:new)).to redirect_to new_user_session_path
+    }
   end
 
   describe 'as a logged in user' do
@@ -16,6 +20,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     it {
       expect(get(:index)).to redirect_to dashboard_path
+    }
+
+    it {
+      expect(get(:new)).to redirect_to dashboard_path
     }
   end
 
@@ -26,6 +34,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     it {
       expect(get(:index)).to be_successful
+    }
+
+    it {
+      expect(get(:new)).to be_successful
     }
   end
 end
