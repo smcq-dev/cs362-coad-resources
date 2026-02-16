@@ -71,5 +71,42 @@ RSpec.describe OrganizationsController, type: :controller do
     }
   end 
 
+  describe 'as a logged in admin user' do 
+    let(:user) {create(:user, :admin)}
+    let(:organization) {create(:organization)}
+    before(:each) {sign_in user}
+
+    it {
+      expect(get(:index)).to be_successful
+    }
+
+    it {
+      expect(get(:new)).to redirect_to dashboard_path
+    }
+
+    # it {
+    #   expect(get(:edit)).to be_successful
+    # }
+
+    it {
+      expect(put(:update, params: {id: organization.id})).to redirect_to dashboard_path
+    }
+
+    it {
+      expect(post(:approve, params: {id: organization.id})).to redirect_to organizations_path
+    }
+
+    it {
+      expect(post(:reject, params: {id: organization.id, organization: {rejection_reason: nil}})).to redirect_to organizations_path
+    }
+
+
+    it {
+      create(:user, role: :admin)
+      post(:create, params: {organization: FactoryBot.attributes_for(:organization)})
+      expect(response).to redirect_to dashboard_path
+
+    }
+  end 
 
 end
