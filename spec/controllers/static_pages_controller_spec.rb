@@ -2,4 +2,30 @@ require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
 
+  describe 'as logged out user' do
+    let(:user) { create(:user) }
+
+    it {
+      expect(get(:index)).to be_successful
+    }
+  end
+
+  describe 'as a logged in user' do 
+    let(:user) { create(:user) }
+    before(:each) { sign_in user }
+
+    it {
+      expect(get(:index)).to be_successful
+    }
+  end
+
+  describe 'as an admin user' do
+    let(:user) { create(:user, :admin) }
+    before(:each) { sign_in user }
+
+    it {
+      expect(get(:index)).to be_successful
+    }
+  end
+
 end
