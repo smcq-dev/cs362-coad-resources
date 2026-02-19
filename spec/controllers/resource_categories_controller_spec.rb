@@ -99,6 +99,14 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     }
 
     it {
+      rc = build(:resource_category, id: 1)
+      allow(ResourceCategory).to receive(:find).and_return(rc)
+      allow(rc).to receive(:activate).and_return(false)
+      patch(:update, params: {id: rc.id, resource_category: FactoryBot.attributes_for(:resource_category)})
+      expect(response).to redirect_to resource_category_path(rc)
+    }
+
+    it {
       expect(patch(:deactivate, params: {id: resource_category.id})).to redirect_to resource_category_path(resource_category)
     }
 
