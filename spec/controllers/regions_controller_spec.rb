@@ -94,6 +94,14 @@ RSpec.describe RegionsController, type: :controller do
     }
 
     it {
+      region = build(:region, id: 1)
+      allow(Region).to receive(:find).and_return(region)
+      allow(region).to receive(:update).and_return(false)
+      patch(:update, params: {id: region.id, region: FactoryBot.attributes_for(:region)})
+      expect(response).to be_successful
+    }
+
+    it {
       expect(delete(:destroy, params: {id: region.id})).to redirect_to regions_path
     }
 
