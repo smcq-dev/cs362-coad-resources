@@ -102,5 +102,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
       post(:create, params: {id: resource_category.id, resource_category: FactoryBot.attributes_for(:resource_category)})
       expect(response).to redirect_to resource_categories_path
     }
+
+    it {
+      rc = build(:resource_category)
+      allow(ResourceCategory).to receive(:new).and_return(rc)
+      allow(rc).to receive(:save).and_return(false)
+      post(:create, params: {id: rc.id, resource_category: FactoryBot.attributes_for(:resource_category)})
+      expect(response).to be_successful
+    }
   end
 end
