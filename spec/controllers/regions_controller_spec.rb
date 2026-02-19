@@ -101,6 +101,14 @@ RSpec.describe RegionsController, type: :controller do
       post(:create, params: {region: FactoryBot.attributes_for(:region)})
       expect(response).to redirect_to regions_path
     }
+
+    it {
+      region = build(:region)
+      allow(Region).to receive(:new).and_return(region)
+      allow(region).to receive(:save).and_return(false)
+      post(:create, params: {region: FactoryBot.attributes_for(:region)})
+      expect(response).to be_successful
+    }
   end
 
 end
