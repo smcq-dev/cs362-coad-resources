@@ -18,7 +18,7 @@ RSpec.describe DashboardController, type: :controller do
       expect(get(:index)).to be_successful
     }
 
-    it {
+    it 'uses stubbed dependencies for index' do
       allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
       allow(controller).to receive(:tickets).and_return([])
 
@@ -26,7 +26,23 @@ RSpec.describe DashboardController, type: :controller do
 
       expect(controller).to have_received(:status_options)
       expect(controller).to have_received(:tickets)
-    }
+      expect(response).to be_successful
+    end
+
+    it 'covers the Open tickets branch' do
+      get(:index, params: { status: 'Open' })
+      expect(response).to be_successful
+    end
+
+    it 'covers the Closed tickets branch' do
+      get(:index, params: { status: 'Closed' })
+      expect(response).to be_successful
+    end
+
+    it 'covers the Captured tickets branch' do
+      get(:index, params: { status: 'Captured' })
+      expect(response).to be_successful
+    end
   end
 
   describe 'as an organization user with an approved organization' do
@@ -38,13 +54,24 @@ RSpec.describe DashboardController, type: :controller do
       expect(get(:index)).to be_successful
     }
 
-    it {
+    it 'uses stubbed status_options' do
       allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
 
       get(:index)
 
       expect(controller).to have_received(:status_options)
-    }
+      expect(response).to be_successful
+    end
+
+    it 'covers the My Captured tickets branch' do
+      get(:index, params: { status: 'My Captured' })
+      expect(response).to be_successful
+    end
+
+    it 'covers the My Closed tickets branch' do
+      get(:index, params: { status: 'My Closed' })
+      expect(response).to be_successful
+    end
   end
 
   describe 'as an admin user' do
@@ -55,13 +82,14 @@ RSpec.describe DashboardController, type: :controller do
       expect(get(:index)).to be_successful
     }
 
-    it {
+    it 'uses stubbed status_options' do
       allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
 
       get(:index)
 
       expect(controller).to have_received(:status_options)
-    }
+      expect(response).to be_successful
+    end
   end
 
 end
