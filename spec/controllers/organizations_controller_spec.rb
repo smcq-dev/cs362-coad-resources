@@ -12,10 +12,6 @@ RSpec.describe OrganizationsController, type: :controller do
       expect(get(:new)).to redirect_to new_user_session_path
     }
 
-    # it {
-    #   expect(get(:edit)).to be_successful
-    # }
-
     it {
       expect(put(:update, params: {id: 1})).to redirect_to new_user_session_path
     }
@@ -47,10 +43,6 @@ RSpec.describe OrganizationsController, type: :controller do
       expect(get(:new)).to be_successful
     }
 
-    # it {
-    #   expect(get(:edit)).to be_successful
-    # }
-
     it {
       expect(put(:update, params: {id: 1})).to redirect_to dashboard_path
     }
@@ -69,6 +61,32 @@ RSpec.describe OrganizationsController, type: :controller do
       expect(response).to redirect_to organization_application_submitted_path
 
     }
+
+    it {
+      org = build(:organization)
+      allow(Organization).to receive(:new).and_return(org)
+      allow(org).to receive(:save).and_return(false)
+      post(:create, params: {organization: FactoryBot.attributes_for(:organization)})
+      expect(response).to be_successful
+    }
+
+    it {
+      approved_org = create(:organization, status: :approved)
+      user.update(organization: approved_org)
+      allow(Organization).to receive(:find).and_return(approved_org)
+      allow(approved_org).to receive(:update).and_return(false)
+      put(:update, params: {id: approved_org.id, organization: FactoryBot.attributes_for(:organization)})
+      expect(response).to be_successful
+    }
+
+    it {
+      approved_org = create(:organization, status: :approved)
+      user.update(organization: approved_org)
+      put(:update, params: {id: approved_org.id, organization: FactoryBot.attributes_for(:organization)})
+      expect(response).to redirect_to organization_path(id: approved_org.id)
+    }
+
+    
   end 
 
   describe 'as a logged in admin user' do 
@@ -84,9 +102,6 @@ RSpec.describe OrganizationsController, type: :controller do
       expect(get(:new)).to redirect_to dashboard_path
     }
 
-    # it {
-    #   expect(get(:edit)).to be_successful
-    # }
 
     it {
       expect(put(:update, params: {id: organization.id})).to redirect_to dashboard_path
@@ -107,6 +122,7 @@ RSpec.describe OrganizationsController, type: :controller do
       expect(response).to redirect_to dashboard_path
 
     }
+
   end 
 
 end
