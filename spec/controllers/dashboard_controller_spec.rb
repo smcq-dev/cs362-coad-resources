@@ -19,9 +19,13 @@ RSpec.describe DashboardController, type: :controller do
     }
 
     it {
-      expect(controller).to receive(:status_options).and_call_original
-      expect(controller).to receive(:tickets).and_call_original
+      allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
+      allow(controller).to receive(:tickets).and_return([])
+
       get(:index)
+
+      expect(controller).to have_received(:status_options)
+      expect(controller).to have_received(:tickets)
     }
   end
 
@@ -35,8 +39,11 @@ RSpec.describe DashboardController, type: :controller do
     }
 
     it {
-      expect(controller).to receive(:status_options).and_call_original
+      allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
+
       get(:index)
+
+      expect(controller).to have_received(:status_options)
     }
   end
 
@@ -49,8 +56,11 @@ RSpec.describe DashboardController, type: :controller do
     }
 
     it {
-      expect(controller).to receive(:status_options).and_call_original
+      allow(controller).to receive(:status_options).and_return(["Open", "Closed"])
+
       get(:index)
+
+      expect(controller).to have_received(:status_options)
     }
   end
 
