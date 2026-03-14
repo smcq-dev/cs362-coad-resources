@@ -7,7 +7,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
   end
 
   it "can be done from the home screen" do
-    # Simulate user interaction with the page
     visit root_path
     click_on "Get Help"
     fill_in "Full Name", with: "test name"
@@ -17,7 +16,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
     fill_in "Description", with: "Test description"
     click_on "Send this help request"
 
-    #make sure it works
     expect(current_path).to eq ticket_submitted_path
   end
 
